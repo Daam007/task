@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bundle & Save</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f7f8;
+      padding: 40px;
+      color: #333;
+    }
+
+    .bundle-container {
+      max-width: 400px;
+      margin: auto;
+      background: #fff;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    .bundle-container h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #05603a;
+    }
+
+    .option {
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      padding: 15px;
+      margin-bottom: 15px;
+      display: flex;
+      flex-direction: column;
+      cursor: pointer;
+    }
+
+    .option input {
+      margin-right: 10px;
+    }
+
+    .option.active {
+      border: 2px solid #05603a;
+      background: #e9f6f0;
+    }
+
+    .option-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .sizes {
+      margin-top: 10px;
+      display: flex;
+      gap: 10px;
+    }
+
+    .sizes select {
+      padding: 5px;
+      border-radius: 6px;
+      border: 1px solid #bbb;
+    }
+
+    .tag {
+      font-size: 12px;
+      font-weight: bold;
+      color: #05603a;
+    }
+
+    .price {
+      font-weight: bold;
+    }
+
+    .footer {
+      margin-top: 20px;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    .btn {
+      margin-top: 15px;
+      display: block;
+      width: 100%;
+      padding: 12px;
+      background: #05603a;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background: #044d2f;
+    }
+  </style>
+</head>
+<body>
+  <div class="bundle-container">
+    <h2>Bundle & Save</h2>
+    <label class="option" data-price="195">
+      <div class="option-header">
+        <span>1 Pair</span>
+        <span class="price">DKK 195.00</span>
+      </div>
+      <span class="tag"> 50% OFF</span>        
+
+      <div class="sizes">
+        #1<select>
+          <option>S</option>
+          <option>M</option>
+          <option>L</option>
+        </select>
+         <select>
+          <option>Colour</option>
+          <option>Black</option>
+          <option>White</option>
+        </select>
+      </div>
+      <div class="sizes">
+       #2 <select>
+          <option>S</option>
+          <option>M</option>
+          <option>L</option>
+        </select>
+        <select>
+          <option>Colour</option>
+          <option>Black</option>
+          <option>White</option>
+        </select>
+      </div>
+      <input type="radio" name="bundle" value="2" checked>
+    </label>
+
+    <!-- 2 Pair -->
+    <label class="option active" data-price="345">
+      <div class="option-header">
+        <span>2 Pair</span>
+        <span class="price">DKK 345.00</span>
+      </div>
+      <span class="tag">Most Popular - 40% OFF</span>
+      <div class="sizes">
+        #1<select>
+          <option>S</option>
+          <option>M</option>
+          <option>L</option>
+        </select>
+        <select>
+          <option>Colour</option>
+          <option>Black</option>
+          <option>White</option>
+        </select>
+      </div>
+      <div class="sizes">
+        #2<select>
+          <option>S</option>
+          <option>M</option>
+          <option>L</option>
+        </select>
+        <select>
+          <option>Colour</option>
+          <option>Black</option>
+          <option>White</option>
+        </select>
+      </div>
+      <input type="radio" name="bundle" value="2" checked>
+    </label>
+
+    <!-- 3 Pair -->
+    <label class="option" data-price="528">
+      <div class="option-header">
+        <span>3 Pair</span>
+        <span class="price">DKK 528.00</span>
+      </div>
+       <span class="tag">60% OFF</span>
+       <div class="sizes">
+        #1<select>
+          <option>S</option>
+          <option>M</option>
+          <option>L</option>
+        </select>
+        <select>
+          <option>Colour</option>
+          <option>Black</option>
+          <option>White</option>
+        </select>
+      </div>
+      <div class="sizes">
+        #2<select>
+          <option>S</option>
+          <option>M</option>
+          <option>L</option>
+        </select>
+        <select>
+          <option>Colour</option>
+          <option>Black</option>
+          <option>White</option>
+        </select>
+      </div>
+      <input type="radio" name="bundle" value="3">
+    </label>
+
+
+    <!-- Footer -->
+    <div class="footer">
+      Free 2 Day Shipping <br>
+      Total: <span id="total">DKK 345.00</span>
+    </div>
+
+    <button class="btn">+ Add to Cart</button>
+  </div>
+
+  <script>
+    const options = document.querySelectorAll('.option');
+    const total = document.getElementById('total');
+
+    options.forEach(option => {
+      option.addEventListener('click', () => {
+        options.forEach(o => o.classList.remove('active'));
+        option.classList.add('active');
+
+        const price = option.getAttribute('data-price');
+        total.textContent = `DKK ${price}.00`;
+        option.querySelector('input').checked = true;
+      });
+    });
+  </script>
+</body>
+</html>
